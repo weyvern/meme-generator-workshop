@@ -2,6 +2,14 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Env vars
+
+Create an .env file with the following variables:
+
+- REACT_APP_API=https://api.imgflip.com
+- REACT_APP_USERNAME=
+- REACT_APP_PASSWORD=
+
 ## Available Scripts
 
 In the project directory, you can run:

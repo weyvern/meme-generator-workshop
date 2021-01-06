@@ -3,7 +3,7 @@ import { MemeContext } from '../context/memeContext';
 import SubmitMeme from './SubmitMeme';
 
 const MemeInput = () => {
-  const { inputs, setInputs } = useContext(MemeContext);
+  const { selectedMeme, inputs, setInputs } = useContext(MemeContext);
   const updateInputs = (e, idx) => {
     const value = e.target.value || '';
     setInputs(
@@ -25,7 +25,7 @@ const MemeInput = () => {
           />
         </div>
       ))}
-      <SubmitMeme />
+      {selectedMeme && <SubmitMeme />}
     </div>
   );
 };

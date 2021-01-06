@@ -32,7 +32,7 @@ const MemeState = ({ children }) => {
 
     // Axios
     axios
-      .get('https://api.imgflip.com/get_memes')
+      .get(`${process.env.REACT_APP_API}/get_memes`)
       .then(({ data: { data: { memes } } }) => setMemes(memes))
       .catch(error => setError(error));
   }, []);
