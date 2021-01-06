@@ -6,7 +6,8 @@ export const MemeContext = createContext({});
 const MemeState = ({ children }) => {
   const [memes, setMemes] = useState([]);
   const [error, setError] = useState('');
-  const [selectedMeme, setSelectedMeme] = useState({});
+  const [selectedMeme, setSelectedMeme] = useState();
+  const [inputs, setInputs] = useState([]);
 
   useEffect(() => {
     // Optional: with async/await
@@ -38,7 +39,7 @@ const MemeState = ({ children }) => {
 
   return (
     <MemeContext.Provider
-      value={{ memes, error, selectedMeme, setSelectedMeme }}
+      value={{ memes, error, selectedMeme, setSelectedMeme, inputs, setInputs }}
     >
       {children}
     </MemeContext.Provider>

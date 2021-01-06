@@ -1,13 +1,19 @@
 import { useContext } from 'react';
 import { MemeContext } from '../context/memeContext';
+import Meme from './Meme';
 
 const MemeSelector = () => {
   const { memes } = useContext(MemeContext);
-  return memes.map(({ id, name, url }) => (
-    <div key={id}>
-      <img src={url} width='300px' alt={name} />
+  return (
+    <div
+      className='d-flex flex-wrap'
+      style={{ height: '500px', overflowY: 'scroll' }}
+    >
+      {memes.map(meme => (
+        <Meme key={meme.id} meme={meme} />
+      ))}
     </div>
-  ));
+  );
 };
 
 export default MemeSelector;
