@@ -4,14 +4,20 @@ import SubmitMeme from './SubmitMeme';
 
 const MemeInput = ({ shareMeme }) => {
   const { selectedMeme, inputs, setInputs } = useContext(MemeContext);
-  const updateInputs = (e, idx) => {
-    const value = e.target.value || '';
-    setInputs(
-      inputs.map((c, i) => {
-        return idx === i ? value : c;
-      })
-    );
+
+  const updateInputs = (event, index) => {
+    const value = event.target.value || '';
+    const newInputs = inputs.map((input, i) => {
+      if (index === i) {
+        return value;
+      } else {
+        return input;
+      }
+    });
+    setInputs(newInputs);
+    //setInputs(inputs.map((c, i) => (index === i ? value : c)));
   };
+
   return (
     <div>
       {inputs.map((input, i) => (

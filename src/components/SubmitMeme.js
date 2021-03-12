@@ -12,18 +12,19 @@ const SubmitMeme = ({ shareMeme }) => {
   };
 
   const generateMeme = () => {
+    // for of
+    for (let input of inputs) {
+      if (!input) return alert('Please fill out all the inputs');
+    }
+
     const obj = {
       username: process.env.REACT_APP_USERNAME,
       password: process.env.REACT_APP_PASSWORD,
       template_id: selectedMeme.id
     };
-
-    for (let input of inputs) {
-      if (!input) return alert('Please fill out all the inputs');
-    }
-
     const arr = inputs.map((v, idx) => `boxes[${idx}][text]=${v}`).join('&');
 
+    console.log(`${process.env.REACT_APP_API}/caption_image${querifyObj(obj)}&${arr}`);
     axios
       .post(`${process.env.REACT_APP_API}/caption_image${querifyObj(obj)}&${arr}`)
       .then(({ data: { data: { url } } }) => setSelectedMeme({ ...selectedMeme, url }));

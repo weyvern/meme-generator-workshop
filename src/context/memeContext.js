@@ -10,27 +10,6 @@ const MemeState = ({ children }) => {
   const [inputs, setInputs] = useState([]);
 
   useEffect(() => {
-    // Optional: with async/await
-    /*  const getMemes = async () => {
-        try {
-          const res = await fetch('https://api.imgflip.com/get_memes');
-          const {
-            data: { memes }
-          } = await res.json();
-          setMemes(memes);
-        } catch (error) {
-          setError(error);
-        }
-      };
-      getMemes(); */
-
-    // Fetch
-    /*  fetch('https://api.imgflip.com/get_memes')
-      .then(res => res.json())
-      .then(({ data: { memes } }) => setMemes(memes))
-      .catch(error => setError(error)); */
-
-    // Axios
     axios
       .get(`${process.env.REACT_APP_API}/get_memes`)
       .then(({ data: { data: { memes } } }) => setMemes(memes))
