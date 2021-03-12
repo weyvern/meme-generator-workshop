@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
-export const MemeContext = createContext({});
+export const MemeContext = createContext();
 
 const MemeState = ({ children }) => {
   const [memes, setMemes] = useState([]);

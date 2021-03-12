@@ -5,13 +5,12 @@ import Meme from './Meme';
 const MemeSelector = () => {
   const { memes } = useContext(MemeContext);
   return (
-    <div
-      className='d-flex flex-wrap'
-      style={{ height: '500px', overflowY: 'scroll' }}
-    >
-      {memes.map(meme => (
-        <Meme key={meme.id} meme={meme} />
-      ))}
+    <div className='d-flex flex-wrap' style={{ height: '500px', overflowY: 'scroll' }}>
+      <div className='row'>
+        {memes.map(meme => (
+          <Meme key={meme.id} meme={meme} />
+        ))}
+      </div>
     </div>
   );
 };

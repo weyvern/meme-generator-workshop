@@ -3,7 +3,7 @@ import { MemeContext } from '../context/memeContext';
 import axios from 'axios';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
-const SubmitMeme = () => {
+const SubmitMeme = ({ shareMeme }) => {
   const { selectedMeme, setSelectedMeme, inputs } = useContext(MemeContext);
 
   const querifyObj = obj => {
@@ -18,21 +18,26 @@ const SubmitMeme = () => {
       template_id: selectedMeme.id
     };
 
+    for (let input of inputs) {
+      if (!input) return alert('Please fill out all the inputs');
+    }
+
     const arr = inputs.map((v, idx) => `boxes[${idx}][text]=${v}`).join('&');
 
     axios
-      .post(
-        `${process.env.REACT_APP_API}/caption_image${querifyObj(obj)}&${arr}`
-      )
-      .then(({ data: { data: { url } } }) =>
-        setSelectedMeme({ ...selectedMeme, url })
-      );
+      .post(`${process.env.REACT_APP_API}/caption_image${querifyObj(obj)}&${arr}`)
+      .then(({ data: { data: { url } } }) => setSelectedMeme({ ...selectedMeme, url }));
   };
 
   return (
-    <button className='btn btn-lg btn-success' onClick={generateMeme}>
-      Generate
-    </button>
+    <div className='row justify-content-around'>
+      <button className='btn btn-lg btn-success' onClick={generateMeme}>
+        Generate
+      </button>
+      <button className='btn btn-lg btn-warning' onClick={shareMeme}>
+        Save
+      </button>
+    </div>
   );
 };
 
